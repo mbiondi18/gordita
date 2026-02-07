@@ -7,9 +7,11 @@ function createHeart() {
     heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
     heart.style.fontSize = (Math.random() * 20 + 20) + 'px';
     
-    document.getElementById('hearts-container').appendChild(heart);
-    
-    setTimeout(() => heart.remove(), 5000);
+    const heartsContainer = document.getElementById('hearts-container');
+    if (heartsContainer) {
+        heartsContainer.appendChild(heart);
+        setTimeout(() => heart.remove(), 5000);
+    }
 }
 
 // Generate hearts continuously

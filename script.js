@@ -20,12 +20,13 @@ const messages = [
     "Yes is the only answer! ❤️"
 ];
 
-// Start music on first interaction
-document.body.addEventListener('click', () => {
-    if (music.paused) {
+// Try to play music immediately
+music.play().catch(() => {
+    // If autoplay is blocked, play on first user interaction
+    document.body.addEventListener('click', () => {
         music.play().catch(() => {});
-    }
-}, { once: true });
+    }, { once: true });
+});
 
 // Create floating hearts
 function createHeart() {
@@ -36,9 +37,11 @@ function createHeart() {
     heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
     heart.style.fontSize = (Math.random() * 20 + 20) + 'px';
     
-    document.getElementById('hearts-container').appendChild(heart);
-    
-    setTimeout(() => heart.remove(), 5000);
+    const heartsContainer = document.getElementById('hearts-container');
+    if (heartsContainer) {
+        heartsContainer.appendChild(heart);
+        setTimeout(() => heart.remove(), 5000);
+    }
 }
 
 // Generate hearts continuously
