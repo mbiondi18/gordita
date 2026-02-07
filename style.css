@@ -99,12 +99,11 @@ button {
     position: absolute;
     font-size: 30px;
     animation: float 4s ease-in infinite;
-    opacity: 0;
 }
 
 @keyframes float {
     0% {
-        opacity: 0;
+        opacity: 0.8;
         transform: translateY(0) rotate(0deg);
     }
     50% {
