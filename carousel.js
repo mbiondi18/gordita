@@ -18,15 +18,29 @@ function createHeart() {
 // Generate MORE hearts continuously (every 150ms for lots of hearts!)
 setInterval(createHeart, 150);
 
-// Try to play music
+// Try to play music - improved for mobile
 const music = document.getElementById('bgMusic');
 if (music) {
-    music.play().catch(() => {
-        // If autoplay is blocked, play on first user interaction
-        document.body.addEventListener('click', () => {
-            music.play().catch(() => {});
-        }, { once: true });
-    });
+    // Try autoplay first
+    const playPromise = music.play();
+    
+    if (playPromise !== undefined) {
+        playPromise.then(() => {
+            // Autoplay started successfully
+        }).catch(() => {
+            // Autoplay was blocked, try on first touch/click
+            const startMusic = () => {
+                music.play().then(() => {
+                    // Remove listeners after music starts
+                    document.removeEventListener('touchstart', startMusic);
+                    document.removeEventListener('click', startMusic);
+                }).catch(() => {});
+            };
+            
+            document.addEventListener('touchstart', startMusic, { once: true });
+            document.addEventListener('click', startMusic, { once: true });
+        });
+    }
 }
 
 // Carousel functionality

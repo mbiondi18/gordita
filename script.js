@@ -2,7 +2,6 @@ const noBtn = document.getElementById('noBtn');
 const yesBtn = document.getElementById('yesBtn');
 const messageEl = document.getElementById('message');
 const attemptCountEl = document.getElementById('attemptCount');
-const music = document.getElementById('bgMusic');
 
 let attempts = 0;
 let yesBtnScale = 1;
@@ -19,14 +18,6 @@ const messages = [
     "Stop playing hard to get! 😏",
     "Yes is the only answer! ❤️"
 ];
-
-// Try to play music immediately
-music.play().catch(() => {
-    // If autoplay is blocked, play on first user interaction
-    document.body.addEventListener('click', () => {
-        music.play().catch(() => {});
-    }, { once: true });
-});
 
 // Move the "No" button when user hovers over it
 noBtn.addEventListener('mouseover', moveButton);
