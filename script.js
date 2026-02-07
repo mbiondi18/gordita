@@ -56,7 +56,5 @@ function moveButton() {
 }
 
 function sayYes() {
-    // Store that user clicked yes (for music on next page)
-    sessionStorage.setItem('userClickedYes', 'true');
     window.location.href = 'yes.html';
 }

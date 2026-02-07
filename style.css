@@ -218,10 +218,7 @@ button {
     justify-content: center;
     z-index: 10000;
     cursor: pointer;
-}
-
-#tap-overlay.hidden {
-    display: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .tap-message {
