@@ -28,26 +28,6 @@ music.play().catch(() => {
     }, { once: true });
 });
 
-// Create floating hearts
-function createHeart() {
-    const heart = document.createElement('div');
-    heart.className = 'heart';
-    heart.innerHTML = '❤️';
-    heart.style.left = Math.random() * 100 + '%';
-    heart.style.bottom = '0px';
-    heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
-    heart.style.fontSize = (Math.random() * 20 + 20) + 'px';
-    
-    const heartsContainer = document.getElementById('hearts-container');
-    if (heartsContainer) {
-        heartsContainer.appendChild(heart);
-        setTimeout(() => heart.remove(), 5000);
-    }
-}
-
-// Generate MORE hearts continuously (every 150ms for lots of hearts!)
-setInterval(createHeart, 150);
-
 // Move the "No" button when user hovers over it
 noBtn.addEventListener('mouseover', moveButton);
 
