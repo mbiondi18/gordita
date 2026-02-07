@@ -7,12 +7,21 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div id="hearts-container"></div>
     <div class="container">
-        <div class="image-container">
-            <img src="success.jpeg" alt="Success" id="successImage">
+        <div class="carousel">
+            <div class="carousel-container">
+                <img src="photo1.jpg" alt="Photo 1" class="carousel-img active">
+                <img src="photo2.jpg" alt="Photo 2" class="carousel-img">
+                <img src="photo3.jpg" alt="Photo 3" class="carousel-img">
+                <img src="success.jpeg" alt="Success" class="carousel-img">
+            </div>
+            <button class="carousel-btn prev" onclick="moveCarousel(-1)">❮</button>
+            <button class="carousel-btn next" onclick="moveCarousel(1)">❯</button>
         </div>
         <h1>Yay! 🎉</h1>
         <p>Estabas obligada a decir que si</p>
     </div>
+    <script src="carousel.js"></script>
 </body>
 </html>
