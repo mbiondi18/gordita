@@ -18,29 +18,33 @@ function createHeart() {
 // Generate MORE hearts continuously (every 150ms for lots of hearts!)
 setInterval(createHeart, 150);
 
-// Try to play music - improved for mobile
+// Music handling for mobile
 const music = document.getElementById('bgMusic');
-if (music) {
-    // Try autoplay first
-    const playPromise = music.play();
-    
-    if (playPromise !== undefined) {
-        playPromise.then(() => {
-            // Autoplay started successfully
+const tapOverlay = document.getElementById('tap-overlay');
+let musicStarted = false;
+
+function startMusic() {
+    if (!musicStarted && music) {
+        music.play().then(() => {
+            musicStarted = true;
+            if (tapOverlay) {
+                tapOverlay.classList.add('hidden');
+            }
         }).catch(() => {
-            // Autoplay was blocked, try on first touch/click
-            const startMusic = () => {
-                music.play().then(() => {
-                    // Remove listeners after music starts
-                    document.removeEventListener('touchstart', startMusic);
-                    document.removeEventListener('click', startMusic);
-                }).catch(() => {});
-            };
-            
-            document.addEventListener('touchstart', startMusic, { once: true });
-            document.addEventListener('click', startMusic, { once: true });
+            // Keep overlay visible if music fails
         });
     }
+}
+
+// Try autoplay first (works on desktop)
+if (music && sessionStorage.getItem('userClickedYes') === 'true') {
+    startMusic();
+}
+
+// Handle tap overlay (for mobile)
+if (tapOverlay) {
+    tapOverlay.addEventListener('click', startMusic);
+    tapOverlay.addEventListener('touchstart', startMusic);
 }
 
 // Carousel functionality

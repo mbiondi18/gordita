@@ -204,3 +204,42 @@ button {
     position: relative;
     z-index: 10;
 }
+
+/* Tap overlay for mobile */
+#tap-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(102, 126, 234, 0.95);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    cursor: pointer;
+}
+
+#tap-overlay.hidden {
+    display: none;
+}
+
+.tap-message {
+    text-align: center;
+    color: white;
+    animation: bounce 1s ease-in-out infinite;
+}
+
+.tap-message h2 {
+    font-size: 28px;
+    margin: 0;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
