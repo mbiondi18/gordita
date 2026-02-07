@@ -14,8 +14,19 @@ function createHeart() {
     }
 }
 
-// Generate hearts continuously
-setInterval(createHeart, 300);
+// Generate MORE hearts continuously (every 150ms for lots of hearts!)
+setInterval(createHeart, 150);
+
+// Try to play music
+const music = document.getElementById('bgMusic');
+if (music) {
+    music.play().catch(() => {
+        // If autoplay is blocked, play on first user interaction
+        document.body.addEventListener('click', () => {
+            music.play().catch(() => {});
+        }, { once: true });
+    });
+}
 
 // Carousel functionality
 let currentSlide = 0;

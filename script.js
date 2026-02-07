@@ -44,8 +44,8 @@ function createHeart() {
     }
 }
 
-// Generate hearts continuously
-setInterval(createHeart, 300);
+// Generate MORE hearts continuously (every 150ms for lots of hearts!)
+setInterval(createHeart, 150);
 
 // Move the "No" button when user hovers over it
 noBtn.addEventListener('mouseover', moveButton);
